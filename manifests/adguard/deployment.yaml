@@ -63,13 +63,13 @@ spec:
           requests:
             cpu: "0.5"
             memory: "512Mi"
-    volumes:
-      - name: work-data
-        persistentVolumeClaim:
-          claimName: adguard-work-pvc
-      - name: conf-data
-        persistentVolumeClaim:
-          claimName: adguard-conf-pvc
+      volumes:
+        - name: work-data
+          persistentVolumeClaim:
+            claimName: adguard-work-pvc
+        - name: conf-data
+          persistentVolumeClaim:
+            claimName: adguard-conf-pvc
 status: {}
 
 
