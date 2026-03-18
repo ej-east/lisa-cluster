@@ -13,3 +13,16 @@ LISA is a 3 node cluster running k3s and ubutunu. I am consdiring switching to s
 - [ ] Gatekeeper (Define real polices and stick to them)
 
 I will improve the README.md as I go along (I promise)
+
+
+
+## File Structure
+
+```txt
+.
+├── argocd-applications # Application Definitions 
+├── bootstrap # ArgoCD bootstrap; Defines Apps of Apps
+├── diagrams # Diagrams 
+├── infrastructure # helm-charts and custom defintions 
+└── policies # Gatekeeper policies in OPA/Rego
+```
