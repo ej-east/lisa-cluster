@@ -26,6 +26,8 @@ All applications are deployed via ArgoCD using an app-of-apps pattern. Manifests
 | [ArgoCD](https://github.com/argoproj/argo-cd)          | Handles Continuous Delivery (CD) via GitOps. Specified manifests are synced from this repository to the cluster.                              | <img src="images/logo_argocd.png" height="100"/>  |
 | [HashiCorp Vault](https://github.com/hashicorp/vault)  | Runs on-cluster for secret management. Secrets are injected into pods via the Vault Agent sidecar.                                            | <img src="images/logo_vault.png" height="100"/>   |
 | [Ad Guard](https://github.com/AdguardTeam/AdGuardHome) | Runs on-cluster for DNS management and ad blocking. DNS queries are filtered and resolved via customizable blocklists and upstream resolvers. | <img src="images/logo_adguard.png" height="100"/> |
+| [cert-manager](https://cert-manager.io/) | Runs on-cluster for certificate management. Certificates are automatically issued and renewed when ingress resources request them. | <img src="images/logo_cert-manager.png" height="100"/> |
+
 
 ## someday.md
 
@@ -36,7 +38,7 @@ Applications I hope to deploy. These are not in order by any means.
 | [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) | Enforces policies on cluster resources via [OPA](https://www.openpolicyagent.org/). |
 | [Authentik](https://github.com/goauthentik/authentik)         | Provides single sign-on for cluster services.                                       |
 | [BookStack](https://github.com/BookStackApp/BookStack)        | Personal Wiki for all things LISA-related.                                          |
-| [cert-manager](https://cert-manager.io/)                      | Automates TLS certificate lifecycle.                                                |
+|                      | Automates TLS certificate lifecycle.                                                |
 | [bitwarden](https://bitwarden.com/help/self-host-bitwarden/)  | Personal Password Management                                                        |
 
 ## File Structure
