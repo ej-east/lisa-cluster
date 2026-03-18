@@ -38,7 +38,6 @@ Applications I hope to deploy. These are not in order by any means.
 | [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) | Enforces policies on cluster resources via [OPA](https://www.openpolicyagent.org/). |
 | [Authentik](https://github.com/goauthentik/authentik)         | Provides single sign-on for cluster services.                                       |
 | [BookStack](https://github.com/BookStackApp/BookStack)        | Personal Wiki for all things LISA-related.                                          |
-|                      | Automates TLS certificate lifecycle.                                                |
 | [bitwarden](https://bitwarden.com/help/self-host-bitwarden/)  | Personal Password Management                                                        |
 
 ## File Structure
