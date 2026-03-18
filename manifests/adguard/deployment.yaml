@@ -19,6 +19,8 @@ spec:
       labels:
         app: adguard
     spec:
+      node:
+        node-name: lisa-node-2
       containers:
       - name: adguardhome
         image: adguard/adguardhome:edge
