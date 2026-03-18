@@ -4,7 +4,7 @@ This git repository is for my homelab cluster called LISA. At my house we name o
 
 ---
 
-# Technology
+# Architecture
 
 ## Nodes
 
@@ -21,10 +21,10 @@ Each node runs Ubuntu as the base OS with [k3s](https://k3s.io).
 All applications are deployed via ArgoCD using an app-of-apps pattern. Manifests and Helm charts are defined in `argocd-applications/`.
 
 
-| Component       | Purpose                                                                                                          | Logo                                             |
-|-----------------|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| ArgoCD          | Handles Continuous Delivery (CD) via GitOps. Specified manifests are synced from this repository to the cluster. | <img src="images/logo_argocd.png" height="100"/> |
-| HashiCorp Vault | Runs on-cluster for secret management. Secrets are injected into pods via the Vault Agent sidecar.               | <img src="images/logo_vault.png" height="100"/>  |
+| Component                                             | Purpose                                                                                                          | Logo                                             |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| [ArgoCD](https://github.com/argoproj/argo-cd)         | Handles Continuous Delivery (CD) via GitOps. Specified manifests are synced from this repository to the cluster. | <img src="images/logo_argocd.png" height="100"/> |
+| [HashiCorp Vault](https://github.com/hashicorp/vault) | Runs on-cluster for secret management. Secrets are injected into pods via the Vault Agent sidecar.               | <img src="images/logo_vault.png" height="100"/>  |
 
 ## someday.md
 
@@ -37,7 +37,7 @@ Applications I hope to deploy. These are not in order by any means.
 | [Authentik](https://github.com/goauthentik/authentik)         | Provides single sign-on for cluster services.                                       |
 | [BookStack](https://github.com/BookStackApp/BookStack)        | Personal Wiki for all things LISA-related.                                          |
 | [cert-manager](https://cert-manager.io/)                      | Automates TLS certificate lifecycle.                                                |
-
+| [vaultwarden](https://github.com/dani-garcia/vaultwarden)     | Personal Password Management                                                        |
 
 ## File Structure
 
