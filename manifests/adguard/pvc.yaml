@@ -3,6 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: adguard-work-pvc
   namespace: adguard
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -16,6 +18,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: adguard-conf-pvc
   namespace: adguard
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   accessModes:
     - ReadWriteOnce
