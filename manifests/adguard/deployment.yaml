@@ -52,7 +52,7 @@ spec:
         volumeMounts:
           - name:  work-data
             mountPath:  /opt/adguardhome/work
-          - name:  config-data
+          - name:  conf-data
             mountPath:  /opt/adguardhome/conf
         resources:
           limits:
