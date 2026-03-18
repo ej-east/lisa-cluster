@@ -5,6 +5,7 @@ metadata:
   namespace: adguard
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/health-check-timeout: "0"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -20,6 +21,7 @@ metadata:
   namespace: adguard
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/health-check-timeout: "0"
 spec:
   accessModes:
     - ReadWriteOnce
