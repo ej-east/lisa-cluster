@@ -1,28 +1,46 @@
-Hello World!
+# Overview 🍩
+
+This git repo is for my homelab cluster called LISA. At my house we name our servers after the Simpsons. This project is meant to be a useful playground for myself. To help me improve and build upon my Kubernetes skills.
 
 ---
 
-This git repo is for my homelab cluster called LISA (we name our servers after simpsons idk why). There are a few things I would like to do on the homelab cluster I will list them here
+# Technology
 
+## Nodes
 
-LISA is a 3 node cluster running k3s and ubutunu. I am consdiring switching to something a bit better like TalOS.
+Nodes run Ubuntu and k3.
 
-- [ ] Deploy External DNS & cert-manager
-- [ ] Deploy ArgoCD (Cluster be managed entirely by GitOps)
-- [ ] Hashicorp Vault & ESO
-- [ ] Gatekeeper (Define real polices and stick to them)
+| Node        | Role   | RAM  | Disk  |
+|-------------|--------|------|-------|
+| lisa-master | Master | 16GB | 512GB |
+| lisa-node-1 | Worker | 16GB | 512GB |
+| lisa-node-2 | Worker | 16GB | 512GB |
 
-I will improve the README.md as I go along (I promise)
+## Currently Running
 
+| Tool | Component | Logo | 
+|------|----------|-------|
+| ArgoCD | GitOps | <img src="images/logo_argocd.png" height="24"/> | 
+| HashiCorp Vault | Secret Management | <img src="images/logo_vault.png" height="24"/> | 
+
+## someday.md
+
+Applications I hope to deploy or problems I hope to fix. 
+
+- Gatekeeper
+- Ad Guard
+- TLS/https
+- Authentik
+- BookStack
 
 
 ## File Structure
 
 ```txt
-.
-├── argocd-applications # Application Definitions 
-├── bootstrap # ArgoCD bootstrap; Defines Apps of Apps
-├── diagrams # Diagrams 
-├── infrastructure # helm-charts and custom defintions 
-└── policies # Gatekeeper policies in OPA/Rego
+lisa-cluster
+├── argocd-applications # applications for argocd 
+├── bootstrap # bootstrap yaml for app-of-app structure (argocd)
+├── images # Images like diagrams & logos
+├── manifests # custom manifests like points of ingress
+└── policies # OPA policies 
 ```
