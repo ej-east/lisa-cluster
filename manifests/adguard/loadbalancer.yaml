@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: adguard
-  name: adguard
+  name: adguard-loadbalancer
   namespace: adguard
 spec:
   ports:
