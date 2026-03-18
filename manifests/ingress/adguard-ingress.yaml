@@ -19,3 +19,8 @@ spec:
     services:
       - name: adguard
         port: 80
+  - kind: Rule
+    match: Host(`adguard-admin.lisa`)
+    services:
+      - name: adguard
+        port: 3000
