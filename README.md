@@ -20,8 +20,8 @@ Nodes run Ubuntu and k3.
 
 | Tool | Component | Logo | 
 |------|----------|-------|
-| ArgoCD | GitOps | <img src="images/logo_argocd.png" height="24"/> | 
-| HashiCorp Vault | Secret Management | <img src="images/logo_vault.png" height="24"/> | 
+| ArgoCD | GitOps | <img src="images/logo_argocd.png" height="50"/> | 
+| HashiCorp Vault | Secret Management | <img src="images/logo_vault.png" height="50"/> | 
 
 ## someday.md
 
