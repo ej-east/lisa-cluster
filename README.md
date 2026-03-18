@@ -37,7 +37,7 @@ Applications I hope to deploy. These are not in order by any means.
 | [Authentik](https://github.com/goauthentik/authentik)         | Provides single sign-on for cluster services.                                       |
 | [BookStack](https://github.com/BookStackApp/BookStack)        | Personal Wiki for all things LISA-related.                                          |
 | [cert-manager](https://cert-manager.io/)                      | Automates TLS certificate lifecycle.                                                |
-| [vaultwarden](https://github.com/dani-garcia/vaultwarden)     | Personal Password Management                                                        |
+| [bitwarden](https://bitwarden.com/help/self-host-bitwarden/)  | Personal Password Management                                                        |
 
 ## File Structure
 
