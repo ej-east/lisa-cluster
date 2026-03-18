@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests/
+    path: manifests/ingress/
     repoURL: https://github.com/ej-east/lisa-cluster
     targetRevision: HEAD
   syncPolicy:
