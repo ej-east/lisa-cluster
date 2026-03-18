@@ -4,7 +4,7 @@ metadata:
   labels:
     app: adguard
   name: adguard
-  namespace: adgaurd
+  namespace: adguard
 spec:
   ports:
   - name: 443-443
