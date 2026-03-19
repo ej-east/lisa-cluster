@@ -72,6 +72,5 @@ spec:
         - name: conf-data
           persistentVolumeClaim:
             claimName: adguard-conf-pvc
-status: {}
 
 

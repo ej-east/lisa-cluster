@@ -18,5 +18,3 @@ spec:
   selector:
     app: adguard
   type: LoadBalancer
-status:
-  loadBalancer: {}
