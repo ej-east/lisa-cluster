@@ -15,6 +15,9 @@ spec:
     - repoURL: https://github.com/ej-east/lisa-cluster
       targetRevision: HEAD
       ref: values
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: manifests/authentik/secret-management/
 
   destination:
     server: "https://kubernetes.default.svc"
