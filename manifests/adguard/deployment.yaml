@@ -23,7 +23,7 @@ spec:
         kubernetes.io/hostname: lisa-node-2
       containers:
       - name: adguardhome
-        image: adguard/adguardhome:edge
+        image: adguard/adguardhome:v0.108.0-b.83
         ports:
         - containerPort: 443
           protocol: TCP
