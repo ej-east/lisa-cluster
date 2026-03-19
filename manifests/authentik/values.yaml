@@ -1,0 +1,16 @@
+authentik:
+  secret_key: "PleaseGenerateA50CharKey"
+  postgresql:
+    password: "ThisIsNotASecurePassword"
+
+server:
+  ingress:
+    GatewayClassName: 
+    enabled: true
+    hosts:
+      - authentik.lisa
+
+postgresql:
+  enabled: true
+  auth:
+    password: "ThisIsNotASecurePassword"
