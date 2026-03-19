@@ -41,6 +41,9 @@ Applications I hope to deploy. These are not in order by any means.
 | [BookStack](https://github.com/BookStackApp/BookStack)                      | Personal Wiki for all things LISA-related.                                          |
 | [bitwarden](https://bitwarden.com/help/self-host-bitwarden/)                | Personal Password Management                                                        |
 | [paperless](https://docs.paperless-ngx.com/advanced_usage/#troubleshooting) | Manage Paper Documents                                                              |
+| [vert.sh](https://vert.sh/)                                                 | Local Hosted File Convertions                                                       |
+| [Grafana & Prometheus](https://grafana.com/)                                | Monitoring                                                                          |
+
 
 ## File Structure
 
