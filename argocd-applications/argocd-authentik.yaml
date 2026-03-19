@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://charts.goauthentik.io/
+    - repoURL: https://charts.goauthentik.io
       chart: goauthentik
       targetRevision: 2026.2.1
       helm:
