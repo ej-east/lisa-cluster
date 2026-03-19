@@ -2,6 +2,10 @@ authentik:
   secret_key: file:///vault-secrets/secret_key
   postgresql:
     password: file:///vault-secrets/postgresql_password
+    host: file:///vault-secrets/postgresql_host
+    port: file:///vault-secrets/postgresql_port
+    user: file:///vault-secrets/postgresql_username
+    name: file:///vault-secrets/postgresql_name
 
 server:
   volumes:
