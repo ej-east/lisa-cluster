@@ -1,16 +1,24 @@
 authentik:
-  secret_key: "PleaseGenerateA50CharKey"
+  secret_key: file:///vault-secrets/secret_key
   postgresql:
-    password: "ThisIsNotASecurePassword"
+    password: file:///vault-secrets/postgresql_password
 
 server:
-  ingress:
-    GatewayClassName: 
-    enabled: true
-    hosts:
-      - authentik.lisa
+  volumes:
+    - name: vault-secrets
+      secret:
+        secretName: authentik-vault-secrets
+  volumeMounts:
+    - name: vault-secrets
+      mountPath: /vault-secrets
+      readOnly: true
 
-postgresql:
-  enabled: true
-  auth:
-    password: "ThisIsNotASecurePassword"
+worker:
+  volumes:
+    - name: vault-secrets
+      secret:
+        secretName: authentik-vault-secrets
+  volumeMounts:
+    - name: vault-secrets
+      mountPath: /vault-secrets
+      readOnly: true
