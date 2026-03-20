@@ -6,7 +6,7 @@ metadata:
 
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
   - kind: Rule
     match: Host(`vault.lisa`)
@@ -19,3 +19,5 @@ spec:
     services:
       - name: hashicorp-vault
         port: 8200
+        scheme: https
+  tls: {} # use default cert
