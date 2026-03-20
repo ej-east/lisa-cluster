@@ -12,3 +12,4 @@ spec:
   dnsNames:
     - "*.lisa"
     - lisa
+    - "argo.lisa"
