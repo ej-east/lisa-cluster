@@ -6,7 +6,7 @@ metadata:
 
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
   - kind: Rule
     match: Host(`adguard.lisa`)
@@ -18,9 +18,13 @@ spec:
 
     services:
       - name: adguard-clusterip
-        port: 80
+        port: 443
+        scheme: https
+
   - kind: Rule
     match: Host(`adguard-admin.lisa`)
     services:
       - name: adguard-clusterip
         port: 3000
+        scheme: https
+  tls: {}
