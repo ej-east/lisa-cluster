@@ -19,5 +19,4 @@ spec:
     services:
       - name: hashicorp-vault
         port: 8200
-        scheme: https
   tls: {} # use default cert
