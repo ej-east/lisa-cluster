@@ -16,3 +16,4 @@ spec:
     - "adguard.lisa"
     - "authentik.lisa"
     - "vault.lisa"
+    - "adguard-admin.lisa"
