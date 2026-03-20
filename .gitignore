@@ -36,5 +36,9 @@ Temporary Items
 *.vsix
 
 
-# env files
+# Secrets
 *.env
+*.crt
+# Up and comming
+STYLE.md
+REVIEW.md
