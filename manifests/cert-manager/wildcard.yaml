@@ -13,3 +13,6 @@ spec:
     - "*.lisa"
     - lisa
     - "argo.lisa"
+    - "adguard.lisa"
+    - "authentik.lisa"
+    - "vault.lisa"
