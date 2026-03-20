@@ -20,4 +20,4 @@ spec:
       - name: argocd-server
         port: 443
         scheme: https
-  tls: {}
+  tls: {} # use default cert
