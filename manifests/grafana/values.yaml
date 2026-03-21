@@ -1,0 +1,4 @@
+grafana.ini:
+  server:
+    domain: grafana.lisa
+    root_url: https://grafana.lisa
