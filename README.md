@@ -96,7 +96,6 @@ Applications I want to deploy. These are not in order by any means.
 | [Bitwarden](https://bitwarden.com/help/self-host-bitwarden/)                | Self-hosted password management           |
 | [Paperless](https://docs.paperless-ngx.com/advanced_usage/#troubleshooting) | Digital document management               |
 | [vert.sh](https://vert.sh/)                                                 | Locally hosted file conversions           |
-|                                                                             | Monitoring and observability              |
 | [Harbor](https://goharbor.io/)                                              | On-cluster container registry             |
 
 ---
