@@ -15,7 +15,7 @@ spec:
     - repoURL: https://github.com/ej-east/lisa-cluster
       targetRevision: HEAD
       ref: values
-    - repoURL:
+    - repoURL: https://github.com/ej-east/lisa-cluster
       targetRevision: HEAD
       path: manifests/grafana/manifests
   destination:
