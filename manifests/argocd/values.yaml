@@ -68,3 +68,6 @@ configs:
         y2uoEGW0JP0+vFYvcmvfTwU8PMqKNbkhDtGGPrAkjYY09vL4CrNcSideoCsW7cPn
         eHBd7wtceoeoF0d0+tYQ5hKWHJcAKPXMHt7I/nmv4dU6i6Y=
         -----END CERTIFICATE-----
+  rbac:
+    policy.csv: |
+      g, sso_argocd_admins, role:admin 
