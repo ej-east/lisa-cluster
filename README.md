@@ -40,6 +40,7 @@ All applications are deployed via ArgoCD using an app-of-apps pattern. Manifests
 | [cloudnative-pg](https://cloudnative-pg.io/)                  | Manages PostgreSQL instances as Kubernetes-native resources with automated failover and backups.                                                                                        | <img src="images/logo_cloudnative-pg.png" height="100"/>   |
 | [Authentik](https://github.com/goauthentik/authentik)         | Handles Single Sign On (SSO) via OIDC and SAML configurations. Operates on-cluster for cluster.                                                                                         | <img src="images/logo_authentik.png" height="100"/>        |
 | [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) | Enforces custom policies written in [rego](https://www.openpolicyagent.org/docs/policy-language). Manifests are dynamically validated against policies before admission to the cluster. | <img src="images/logo_opa.png" height="100"/>              |
+| [Grafana & Prometheus](https://grafana.com/)                  | Handles Monitoring and Observability. Metrics are collected by Prometheus, visualized through Grafana Dashboards, and alerted out via AlertManager.                                     | <img src="images/logo_grafana.png" height="100"/>          |
 
 ## Design Decisions
 
@@ -95,7 +96,7 @@ Applications I want to deploy. These are not in order by any means.
 | [Bitwarden](https://bitwarden.com/help/self-host-bitwarden/)                | Self-hosted password management           |
 | [Paperless](https://docs.paperless-ngx.com/advanced_usage/#troubleshooting) | Digital document management               |
 | [vert.sh](https://vert.sh/)                                                 | Locally hosted file conversions           |
-| [Grafana & Prometheus](https://grafana.com/)                                | Monitoring and observability              |
+|                                                                             | Monitoring and observability              |
 | [Harbor](https://goharbor.io/)                                              | On-cluster container registry             |
 
 ---
