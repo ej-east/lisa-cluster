@@ -1,0 +1,65 @@
+extraObjects:
+  - apiVersion: external-secrets.io/v1
+    kind: SecretStore
+    metadata:
+      name: vault-backend
+      namespace: argocd
+    spec:
+      provider:
+        vault:
+          server: "http://hashicorp-vault.hashicorp-vault.svc.cluster.local:8200"
+          path: "secret"
+          version: "v2"
+          auth:
+            kubernetes:
+              mountPath: "kubernetes"
+              role: "argocd-role"
+              serviceAccountRef:
+                name: "argocd-dex-server"
+  - apiVersion: external-secrets.io/v1
+    kind: ExternalSecret 
+    metadata:
+      name: argocd-secret
+      namespace: argocd
+    spec:
+      refreshInterval: "1h"
+      secretStoreRef:
+        name: vault-backend
+        kind: SecretStore
+      target:
+        name: argocd-oidc-secret
+        creationPolicy: Owner
+      data:
+        - secretKey: client-secret
+          remoteRef:
+            key: secret/data/argocd 
+            property: client_secret
+
+config:
+  oidc.config: |
+    name: Authentik
+    issuer: https://authentik.lisa/application/o/argo-cd
+    clientID: vGF0iM6Q07DASxPIPL8JmloxejdObijpwiffbr47
+    clientSecret: $argoocd-oidc-secret:client-secret
+
+
+    rootCA: |
+      -----BEGIN CERTIFICATE-----
+      MIIDHzCCAgegAwIBAgIUIMemEwvloPl3TYbWAN8f9GvqJLQwDQYJKoZIhvcNAQEL
+      BQAwFzEVMBMGA1UEAxMMTGlzYSBSb290IENBMB4XDTI2MDMyMDAzMTczM1oXDTM2
+      MDMxNzAzMTgwMlowFzEVMBMGA1UEAxMMTGlzYSBSb290IENBMIIBIjANBgkqhkiG
+      9w0BAQEFAAOCAQ8AMIIBCgKCAQEAolRTOBfEbVjgwFAfz2nE/AVIXreNDbhUzg35
+      fvXwRjGLDzeCd45dWd4R4xK3h5cltMay/cFWztTqi8pqDMPlLejofnOliWXth4+g
+      pLcgWCol/haMXpYNIwaHpEoPm4QPU0CgrOqIhEpg24ONZqTAjJF9hlmfIJVlbH86
+      IT7ByE9PziX0ySNLECpAyVL6uvgt9lO3hFhIFNqCapWA5IQjz/dR1PNqGyNAQYd6
+      yc4wg9SWUhuRdwZI9ncMSwe7JOXBpy2xFkFV9QLi8WmFMzY1uzI9KTK2t+d39h+R
+      gVjGm2p8nqntx+IzMDkHvqVYszUJA12N5wxz2DlqX0YGco6KdQIDAQABo2MwYTAO
+      BgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUItKlv6ky
+      ucMVGQlG2uulzVkKYlwwHwYDVR0jBBgwFoAUItKlv6kyucMVGQlG2uulzVkKYlww
+      DQYJKoZIhvcNAQELBQADggEBAHmz5GGgSWn4BCf8AuXYIQTfRpBOgzQJmKJx4WlV
+      OWufrTW/PuAuo57n9fWQQYzPrkSosSODlaCVYkeZOGdDczMVmj6xLDM0Tf40Rpdn
+      sSLlR8K6xax6KSvUBbxhRXrMoHMQ2L2FCNLime7fIIMcu1hFotTnWH6/BXcBMEk+
+      /WCLmI2xirh7mfH4jLlSwsZxBS/YY+kxz4Hpj6cBiWOsloUvxdUdHGdmWbKR5Dg/
+      y2uoEGW0JP0+vFYvcmvfTwU8PMqKNbkhDtGGPrAkjYY09vL4CrNcSideoCsW7cPn
+      eHBd7wtceoeoF0d0+tYQ5hKWHJcAKPXMHt7I/nmv4dU6i6Y=
+      -----END CERTIFICATE-----

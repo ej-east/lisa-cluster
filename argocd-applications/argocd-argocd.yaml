@@ -5,10 +5,17 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    chart: argo-cd
-    repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 9.4.15
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.4.15
+      helm:
+        valueFiles:
+          - $values/manifests/argocd/values.yaml
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      ref: values
+       
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
