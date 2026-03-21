@@ -18,7 +18,7 @@ grafana:
         scopes: "openid profile email groups"
         auth_url: "https://authentik.lisa/application/o/authorize"
         token_url: "https://authentik.lisa/application/o/token"
-        api_url: "https://authentik.lisa/application/o/userinfo/"
+        api_url: "https://authentik.lisa/application/o/userinfo"
         role_attribute_path: "contains(groups, 'sso_grafana_admins') && 'Admin' || contains(groups, 'sso_grafana_editors') && 'Editor' || 'Viewer'"
         email_attribute_path: "email"
         name_attribute_path: "name"
