@@ -22,6 +22,8 @@ Each node runs Ubuntu as the base OS with [k3s](https://k3s.io).
 
 Currently all traffic is local-only, nothing is exposed to the internet. For my ingress controller I use [Traefik](https://traefik.io/traefik), while it is the default I really like it and I like using it. I use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) as my DNS server. AdGuard allows for a DNS rewrite rule, meaning all `*.lisa` queries are forwarded to one of the node IPs. Every service gets a clean URL like `authentik.lisa` and `adguard.lisa`. For the Kubernetes DNS server, CoreDNS, it forwards all `*.lisa` to AdGuard, so pods inside the cluster can also resolve `*.lisa` domains.
 
+<img src="images/diagram_lisa-network-diagram.png"/>
+
 ---
 
 ## Currently Running
