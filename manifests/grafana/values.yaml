@@ -15,7 +15,7 @@ grafana:
         name: "Authentik"
         client_id: "v879wdfHV8JzLKG2XT7ydY4YgwOTlVgZVayjhVsI"
         client_secret: $__file{/etc/secrets/grafana/oidc_secret}
-        scopes: "openid profile email groups"
+        scopes: "openid profile email"
         auth_url: "https://authentik.lisa/application/o/authorize"
         token_url: "https://authentik.lisa/application/o/token"
         api_url: "https://authentik.lisa/application/o/userinfo"
