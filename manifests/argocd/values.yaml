@@ -42,8 +42,7 @@ configs:
       name: Authentik
       issuer: https://authentik.lisa/application/o/argo-cd/
       clientID: vGF0iM6Q07DASxPIPL8JmloxejdObijpwiffbr47
-      clientSecret: $argoocd-oidc-secret:client-secret
-
+      clientSecret: $argocd-oidc-secret:client-secret
 
       rootCA: |
         -----BEGIN CERTIFICATE-----
