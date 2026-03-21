@@ -9,19 +9,20 @@ grafana:
     server:
       domain: grafana.lisa
       root_url: https://grafana.lisa
-  auth:
-    generic_oauth:
-      enabled: true
-      name: "Authentik"
-      client_id: "vGF0iM6Q07DASxPIPL8JmloxejdObijpwiffbr47"
-      client_secret: $__file{/etc/secrets/grafana-oidc-secret/oidc_secret}
-      scopes: "openid profile email groups"
-      auth_url: "https://authentik.lisa/application/o/authorize"
-      token_url: "https://authentik.lisa/application/o/token"
-      api_url: "https://authentik.lisa/application/o/userinfo/"
-      role_attribute_path: "contains(groups, 'sso_grafana_admins') && 'Admin' || contains(groups, 'sso_grafana_editors') && 'Editor' || 'Viewer'"
-      email_attribute_path: "email"
-      name_attribute_path: "name"
-      login_attribute_path: "preferred_username"
-      allow_sign_up: true
-      skip_org_role_sync: false
+      
+    auth:
+      generic_oauth:
+        enabled: true
+        name: "Authentik"
+        client_id: "vGF0iM6Q07DASxPIPL8JmloxejdObijpwiffbr47"
+        client_secret: $__file{/etc/secrets/grafana-oidc-secret/oidc_secret}
+        scopes: "openid profile email groups"
+        auth_url: "https://authentik.lisa/application/o/authorize"
+        token_url: "https://authentik.lisa/application/o/token"
+        api_url: "https://authentik.lisa/application/o/userinfo/"
+        role_attribute_path: "contains(groups, 'sso_grafana_admins') && 'Admin' || contains(groups, 'sso_grafana_editors') && 'Editor' || 'Viewer'"
+        email_attribute_path: "email"
+        name_attribute_path: "name"
+        login_attribute_path: "preferred_username"
+        allow_sign_up: true
+        skip_org_role_sync: false
