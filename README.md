@@ -45,41 +45,49 @@ All applications are deployed via ArgoCD using an app-of-apps pattern. Manifests
 ## Design Decisions
 
 ### ArgoCD
+
 Handles Continuous Delivery (CD) via GitOps. Specified manifests are synced from this repository to the cluster allowing this repository to act as the single source of truth.
 
 I chose ArgoCD over Flux because of its built-in UI, stronger RBAC model, and generally more intuitive workflow. I didn't want to be manually running kubectl apply against the cluster. Instead, everything lives in Git, and ArgoCD makes sure the cluster matches.
 
 ### HashiCorp Vault
+
 Runs on-cluster for secret management and PKI. Secrets are injected into pods via the Vault Agent sidecar.
 
 I went with Vault over Sealed Secrets because Sealed Secrets didn't feel production-ready for what I needed. It has no real way to do secret rotation, and that was a dealbreaker. Vault gives me rotation, a proper PKI backend, and a foundation that scales if the cluster grows.
 
 ### External Secrets Operator
+
 Syncs secrets from HashiCorp Vault into Kubernetes-native Secret objects across workloads.
 
 Vault has its own sidecar injector, but ESO gives me more flexibility in how and where secrets get deployed. It also helps with separation Vault owns the secrets, ESO handles the delivery, and workloads stay simple.
 
 ### AdGuard Home
+
 Runs on-cluster for DNS management and ad blocking. DNS queries are filtered and resolved via customizable blocklists and upstream resolvers.
 
 AdGuard Home feels modern with polished controls, a clean UI, and built-in encrypted DNS support. I prioritized those things over what Pi-hole offers, like more advanced query logging and community plugins.
 
 ### cert-manager
+
 Runs on-cluster for certificate management. Certificates are automatically issued and renewed when ingress resources request them.
 
 cert-manager solves the kind of problem I'm most likely to forget. It pulls certificates from the local PKI (Vault) and automatically manages them for Ingress resources, so I never have to think about cert expiry.
 
 ### CloudNative-PG
+
 Manages PostgreSQL instances as Kubernetes-native resources with automated failover and backups.
 
 Authentik requires a PostgreSQL database instead of manually managing my own StatefulSet I wanted something purpose built and already refined. CloudNative-PG feels very plug-and-play with it handling provisioning, failover, and backups.
 
 ### Authentik
+
 Handles Single Sign On (SSO) via OIDC and SAML configurations. Operates on-cluster for cluster.
 
 I really wanted an IdP in my cluster. I used to manage Okta professionally (if you're curious), and after that experience I felt like I could never go back to not having centralized auth. Keycloak is the industry standard, but it felt bulky for a homelab. Authentik is lighter, has a great UI, and I wanted to try something newer.
 
 ### OPA Gatekeeper
+
 Enforces custom policies written in [rego](https://www.openpolicyagent.org/docs/policy-language). Manifests are dynamically validated against policies before admission to the cluster.
 
 Currently no policies have been written however I want to require pinning versions, having resource limits, and no privileged containers.
@@ -112,4 +120,3 @@ lisa-cluster
 ```
 
 ---
-
