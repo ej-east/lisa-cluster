@@ -13,7 +13,7 @@ grafana:
     auth.generic_oauth:
         enabled: true
         name: "Authentik"
-        client_id: "v879wdfHV8JzLKG2XT7ydY4YgwOTlVgZVayjhVsI"
+        client_id: $__file{/etc/secrets/grafana/oidc_id}
         client_secret: $__file{/etc/secrets/grafana/oidc_secret}
         scopes: "openid profile email"
         auth_url: "https://authentik.lisa/application/o/authorize/"
