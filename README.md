@@ -94,6 +94,26 @@ Currently no policies have been written however I want to require pinning versio
 
 ---
 
+## Security
+
+### Network Policies
+
+Currently there are no Network Policies. This means that the network is flat. Every pod can talk to every other pod. If one pod is compromised it can reach out to any of the databases within the cluster. This is where Network Policies come into play. You can define what namespaces are allowed to talk to other namespaces. Currently I run [K3s](https://k3s.io/) and by default it runs [flannel](https://github.com/flannel-io/flannel) as the CNI which does not support Network Policies. I plan on replacing K3s with [Talos](https://www.talos.dev/) down the road, which will support this.
+
+### Pod Security Standards
+
+[Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) define three different polices privileged (unrestricted), baseline (prevents known privilege escalation), and restricted (hardening best practices). [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) enforces these policies at the namespace level. It can enforce, audit, and warn. For my custom deployments I use restricted and will continue to do so. For Helm charts I target baseline first and work towards restricted.
+
+### Gatekeeper
+
+WIP
+
+### ServiceAccounts for Vault RBAC
+
+Service Accounts for Vault are tightly scoped, only allowed to see secrets meant for them. For example the `authentik` service account can only see `authentik/` secrets. This is done via [Hashicorp Vault Policies](https://developer.hashicorp.com/vault/docs/concepts/policies)
+
+---
+
 ## Backlog
 
 Applications I want to deploy. These are not in order by any means.
