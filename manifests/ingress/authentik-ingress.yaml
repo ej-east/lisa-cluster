@@ -3,21 +3,18 @@ kind: IngressRoute
 metadata:
   name: authentik
   namespace: authentik
-
 spec:
   entryPoints:
     - websecure
   routes:
-  - kind: Rule
-    match: Host(`authentik.lisa`)
-
-    observability:
-      accessLogs: true
-      metrics: true
-      tracing: true
-
-    services:
-      - name: authentik-server
-        port: 443
-        scheme: https
+    - kind: Rule
+      match: Host(`authentik.lisa`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: authentik-server
+          port: 443
+          scheme: https
   tls: {}

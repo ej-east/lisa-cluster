@@ -3,20 +3,17 @@ kind: IngressRoute
 metadata:
   name: hashicorp-vault
   namespace: hashicorp-vault
-
 spec:
   entryPoints:
     - websecure
   routes:
-  - kind: Rule
-    match: Host(`vault.lisa`)
-
-    observability:
-      accessLogs: true
-      metrics: true
-      tracing: true
-
-    services:
-      - name: hashicorp-vault
-        port: 8200
+    - kind: Rule
+      match: Host(`vault.lisa`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: hashicorp-vault
+          port: 8200
   tls: {} # use default cert

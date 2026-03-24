@@ -9,18 +9,18 @@ metadata:
   namespace: adguard
 spec:
   ports:
-  - name: 443-443
-    port: 443
-    protocol: TCP
-    targetPort: 443
-  - name: 80-80
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  - name: 3000-3000
-    port: 3000
-    protocol: TCP
-    targetPort: 3000
+    - name: 443-443
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    - name: 80-80
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: 3000-3000
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
   selector:
     app: adguard
   type: ClusterIP

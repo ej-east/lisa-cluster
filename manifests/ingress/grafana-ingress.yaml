@@ -3,20 +3,17 @@ kind: IngressRoute
 metadata:
   name: grafana
   namespace: grafana
-
 spec:
   entryPoints:
     - websecure
   routes:
-  - kind: Rule
-    match: Host(`grafana.lisa`)
-
-    observability:
-      accessLogs: true
-      metrics: true
-      tracing: true
-
-    services:
-      - name: prometheus-stack-grafana
-        port: 80
+    - kind: Rule
+      match: Host(`grafana.lisa`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: prometheus-stack-grafana
+          port: 80
   tls: {}

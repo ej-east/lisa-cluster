@@ -3,21 +3,18 @@ kind: IngressRoute
 metadata:
   name: argocd
   namespace: argocd
-
 spec:
   entryPoints:
     - websecure
   routes:
-  - kind: Rule
-    match: Host(`argo.lisa`)
-
-    observability:
-      accessLogs: true
-      metrics: true
-      tracing: true
-
-    services:
-      - name: argocd-server
-        port: 443
-        scheme: https
+    - kind: Rule
+      match: Host(`argo.lisa`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: argocd-server
+          port: 443
+          scheme: https
   tls: {} # use default cert

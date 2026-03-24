@@ -18,7 +18,6 @@ spec:
     - repoURL: https://github.com/ej-east/lisa-cluster
       targetRevision: HEAD
       path: manifests/authentik/manifests/
-
   destination:
     server: "https://kubernetes.default.svc"
     namespace: authentik

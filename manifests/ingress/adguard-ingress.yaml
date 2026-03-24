@@ -3,26 +3,22 @@ kind: IngressRoute
 metadata:
   name: adguard
   namespace: adguard
-
 spec:
   entryPoints:
     - websecure
   routes:
-  - kind: Rule
-    match: Host(`adguard.lisa`)
-
-    observability:
-      accessLogs: true
-      metrics: true
-      tracing: true
-
-    services:
-      - name: adguard-clusterip
-        port: 80
-
-  - kind: Rule
-    match: Host(`adguard-admin.lisa`)
-    services:
-      - name: adguard-clusterip
-        port: 3000
+    - kind: Rule
+      match: Host(`adguard.lisa`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: adguard-clusterip
+          port: 80
+    - kind: Rule
+      match: Host(`adguard-admin.lisa`)
+      services:
+        - name: adguard-clusterip
+          port: 3000
   tls: {}

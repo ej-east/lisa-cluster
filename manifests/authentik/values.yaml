@@ -6,7 +6,6 @@ authentik:
     port: file:///vault-secrets/postgresql_port
     user: file:///vault-secrets/postgresql_username
     name: file:///vault-secrets/postgresql_name
-
 server:
   volumes:
     - name: vault-secrets
@@ -16,7 +15,6 @@ server:
     - name: vault-secrets
       mountPath: /vault-secrets
       readOnly: true
-
 worker:
   volumes:
     - name: vault-secrets

@@ -17,7 +17,7 @@ extraObjects:
               serviceAccountRef:
                 name: "argocd-dex-server"
   - apiVersion: external-secrets.io/v1
-    kind: ExternalSecret 
+    kind: ExternalSecret
     metadata:
       name: argocd-secret
       namespace: argocd
@@ -36,14 +36,12 @@ extraObjects:
       data:
         - secretKey: client-secret
           remoteRef:
-            key: secret/data/argocd 
+            key: secret/data/argocd
             property: client_secret
         - secretKey: client-id
           remoteRef:
-            key: secret/data/argocd 
+            key: secret/data/argocd
             property: client_id
-
-
 server:
   metrics:
     enabled: true
@@ -51,7 +49,6 @@ server:
       enabled: true
       additionalLabels:
         release: prometheus-stack
-
 controller:
   metrics:
     enabled: true
@@ -59,7 +56,6 @@ controller:
       enabled: true
       additionalLabels:
         release: prometheus-stack
-
 repoServer:
   metrics:
     enabled: true
@@ -67,7 +63,6 @@ repoServer:
       enabled: true
       additionalLabels:
         release: prometheus-stack
-
 applicationSet:
   metrics:
     enabled: true
@@ -75,8 +70,6 @@ applicationSet:
       enabled: true
       additionalLabels:
         release: prometheus-stack
-
-
 configs:
   cm:
     url: https://argo.lisa
@@ -106,7 +99,5 @@ configs:
         y2uoEGW0JP0+vFYvcmvfTwU8PMqKNbkhDtGGPrAkjYY09vL4CrNcSideoCsW7cPn
         eHBd7wtceoeoF0d0+tYQ5hKWHJcAKPXMHt7I/nmv4dU6i6Y=
         -----END CERTIFICATE-----
-
   rbac:
-    policy.csv: |
-      g, sso_argocd_admins, role:admin 
+    policy.csv: "g, sso_argocd_admins, role:admin \n"
