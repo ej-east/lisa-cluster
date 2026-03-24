@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: kubeconform-check
+        name: Kubeconform validation
+        entry: scripts/kubeconform-check.sh
+        language: script
+        types: [yaml]
+  - repo: local
+    hooks:
+      - id: yamlfmt
+        name: YAML format
+        entry: yamlfmt
+        language: script
+        types: [yaml]
