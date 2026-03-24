@@ -112,11 +112,12 @@ Applications I want to deploy. These are not in order by any means.
 
 ```txt
 lisa-cluster
-├── argocd-applications  # applications for argocd
-├── bootstrap            # bootstrap yaml for app-of-app structure (argocd)
-├── images               # images like diagrams & logos
-├── manifests            # custom manifests definitions
-└── policies             # OPA policies
+├── argocd-applications # centerlized argocd applications
+├── bootstrap # bootstrap, defines app-of-apps for argocd
+├── images # images and technical diagrams
+├── manifests # additional customizations and custom deployments
+├── policies # policy-as-code lives here
+└── scripts # custom scripts 
 ```
 
 ---
