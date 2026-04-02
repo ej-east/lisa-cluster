@@ -5,7 +5,7 @@ output "vm_id" {
 
 output "vm_image_name" {
   description = "The name of the image that was used"
-  value       = data.oci_core_images.oracle_linux.images[0].name
+  value       = data.oci_core_images.oracle_linux.images[0].display_name
 }
 
 output "vm_private_ip" {

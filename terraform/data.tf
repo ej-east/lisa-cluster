@@ -28,5 +28,5 @@ data "oci_core_vnic_attachments" "vm_vnic_attachments" {
 }
 
 data "oci_core_private_ips" "vm_private_ips" {
-  vnic_id = data.oci_core_vnic_attachments.vm_vnic_attachments[0].vnic_id
+  vnic_id = data.oci_core_vnic_attachments.vm_vnic_attachments.vnic_attachments[0].vnic_id
 }

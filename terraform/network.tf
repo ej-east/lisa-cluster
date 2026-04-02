@@ -3,7 +3,7 @@ resource "oci_core_vcn" "vcn" {
   cidr_blocks    = [var.vcn_cidr]
 
   display_name = "vcn-${random_pet.proxy.id}"
-  dns_label    = "vcn${random_pet.proxy.id}"
+  dns_label    = substr("vcn${replace(random_pet.proxy.id, "-", "")}", 0, 15)
 
   freeform_tags = merge(var.tags, {
     Name = "vcn-${random_pet.proxy.id}"
@@ -54,7 +54,7 @@ resource "oci_core_security_list" "public-sl" {
 
   # Allow the Deployer to ssh into the machine
   ingress_security_rules {
-    source   = var.deployer_ip
+    source   = "${var.deployer_ip}/32"
     protocol = "6" # code for tcp 
     tcp_options {
       min = 22
@@ -80,7 +80,7 @@ resource "oci_core_security_list" "public-sl" {
     protocol = "6"
     tcp_options {
       min = 443
-      max = 433
+      max = 443
     }
     stateless = false
   }
@@ -109,7 +109,7 @@ resource "oci_core_subnet" "public-subnet" {
   prohibit_public_ip_on_vnic = false
 
   display_name = "vcn-public-subnet-${random_pet.proxy.id}"
-  dns_label    = "publicsubent${random_pet.proxy.id}"
+  dns_label    = substr("pubsub${replace(random_pet.proxy.id, "-", "")}", 0, 15)
 
   route_table_id    = oci_core_route_table.rt.id
   security_list_ids = [oci_core_security_list.public-sl.id]
@@ -125,7 +125,7 @@ resource "oci_core_public_ip" "vm_reserved_ip" {
   display_name   = "vm-reserved-ip-${random_pet.proxy.id}"
   lifetime       = "RESERVED"
 
-  private_ip_id = data.oci_core_private_ips.vm_private_ips[0].id
+  private_ip_id = data.oci_core_private_ips.vm_private_ips.private_ips[0].id
 
   freeform_tags = merge(var.tags, {
     Name = "vm-reserved-ip-${random_pet.proxy.id}"
