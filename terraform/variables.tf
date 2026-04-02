@@ -50,3 +50,38 @@ variable "deployer_ip" {
   description = "The IP address you are deploying from"
   type        = string
 }
+
+variable "vm_memory" {
+  description = "The amount of memory you want the VM to have"
+  type        = number
+  default     = 4
+  validation {
+    error_message = "Amount of memory must be between 1-24"
+    condition     = var.vm_memory >= 1 && var.vm_memory <= 24
+  }
+}
+
+variable "vm_cpu" {
+  description = "The number of CPU cores you want the VM to have. Must be between 1-4"
+  type        = number
+  default     = 1
+  validation {
+    error_message = "Amount of CPU cores must be between 1-4"
+    condition     = var.vm_cpu >= 1 && var.vm_cpu <= 4
+  }
+}
+
+variable "vm_storage" {
+  description = "The amount of space you want the boot disk to have."
+  type        = number
+  default     = 50
+  validation {
+    error_message = "Amount of space must be between 50-200"
+    condition     = var.vm_storage >= 50 && var.vm_storage <= 200
+  }
+}
+
+variable "deployer_public_ssh_key" {
+  description = "The file path to the deployer's public SSH key"
+  type        = string
+}

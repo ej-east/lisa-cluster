@@ -117,3 +117,17 @@ resource "oci_core_subnet" "public-subnet" {
     Name = "vcn-public-subnet-${random_pet.proxy.id}"
   })
 }
+
+
+# This resource is created *after* vm creation
+resource "oci_core_public_ip" "vm_reserved_ip" {
+  compartment_id = var.tenancy_ocid
+  display_name   = "vm-reserved-ip-${random_pet.proxy.id}"
+  lifetime       = "RESERVED"
+
+  private_ip_id = data.oci_core_private_ips.vm_private_ips[0].id
+
+  freeform_tags = merge(var.tags, {
+    Name = "vm-reserved-ip-${random_pet.proxy.id}"
+  })
+}
