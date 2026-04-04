@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-cheesedipper
+  namespace: kube-system
+spec:
+  secretName: wildcard-cheesedipper-tls 
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "*.lisa"
+  dnsNames:
+    - "cheesedipper.com"
+    - "*.cheesedipper.com"
