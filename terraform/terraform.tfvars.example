@@ -1,0 +1,28 @@
+# --- OCI Authentication ---
+tenancy_ocid     = "ocid1.tenancy.oc1..exampleuniqueID"
+user_ocid        = "ocid1.user.oc1..exampleuniqueID"
+fingerprint      = "aa:bb:cc:dd:ee:ff:00:11:22:33:44:55:66:77:88:99"
+private_key_path = "~/.oci/oci_api_key.pem"
+
+# --- Region ---
+# region = "us-ashburn-1"  # default
+
+# --- Networking ---
+# vcn_cidr    = "10.0.0.0/16"   # default
+# subnet_cidr = "10.0.0.0/24"   # default
+deployer_ip = "203.0.113.50"
+
+# --- VM Sizing ---
+# vm_memory  = 4    # 1-24 GB, default 4
+# vm_cpu     = 1    # 1-4 cores, default 1
+# vm_storage = 50   # 50-200 GB, default 50
+
+# --- SSH ---
+deployer_public_ssh_key = "~/.ssh/id_rsa.pub"
+
+# --- Tags ---
+# tags = {
+#   Environment = "production"
+#   Project     = "lisa-cluster-proxy"
+#   ManagedBy   = "terraform"
+# }

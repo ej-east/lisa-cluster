@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wireguard-client
+  name: wireguard-client
+  namespace: wireguard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wireguard-client
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wireguard-client
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      initContainers:
+        - name: config-builder 
+          image: busybox:1.37
+          command:
+            - sh 
+            - -c 
+            - | 
+              PRIVATE_KEY=$(cat /secrets/wireguard_client)
+              sed "s|# Inject Private Key at runtime|PrivateKey = ${PRIVATE_KEY}|" \
+                /config-template/wg0.conf.template > /config/wg0.conf
+              chmod 600 /config/wg0.conf
+          volumeMounts:
+            - name: wireguard-secret
+              mountPath: /secrets 
+              readOnly: true 
+            - name: config-template
+              mountPath: /config-template/ 
+              readOnly: true 
+            - name: config 
+              mountPath: /config 
+      containers:
+      - image: procustodibus/wireguard:latest
+        name: wireguard
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_MODULE
+          privileged: false 
+        env:
+          - name: LOG_CONFS
+            value: "false"
+        volumeMounts:
+          - name: config 
+            mountPath: /etc/wireguard
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 200m 
+          requests:
+            memory: 64Mi 
+            cpu: 50m
+      volumes:
+        - name: wireguard-secret
+          secret: 
+            secretName: wireguard-vault-secrets
+        - name: config-template
+          configMap:
+            name: wireguard-config 
+        - name: config 
+          emptyDir:
+            medium: Memory

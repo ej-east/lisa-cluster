@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wireguard-config
+  namespace: wireguard
+data:
+  wg0.conf.template: | 
+        [Interface]
+        Address = 10.200.0.2/24
+        # Inject Private Key at runtime
+
+        # Forward traffic received on tunnel to Traefik's ClusterIP
+        PostUp = iptables -t nat -A PREROUTING -i wg0 -p tcp --dport 80 -j DNAT --to-destination 10.43.227.162:80
+        PostUp = iptables -t nat -A PREROUTING -i wg0 -p tcp --dport 443 -j DNAT --to-destination 10.43.227.162:443
+        PostUp = iptables -t nat -A POSTROUTING -j MASQUERADE
+     
+        PostDown = iptables -t nat -D PREROUTING -i wg0 -p tcp --dport 80 -j DNAT --to-destination 10.43.227.162:80
+        PostDown = iptables -t nat -D PREROUTING -i wg0 -p tcp --dport 443 -j DNAT --to-destination 10.43.227.162:443
+        PostDown = iptables -t nat -D POSTROUTING -j MASQUERADE
+     
+        [Peer]
+        # OCI Machine 
+        PublicKey = UyFXC1x34YifwYi0KL8MP6F2DBvdWWys57m9LQge6mg=
+        Endpoint = 129.158.253.226:51820
+        AllowedIPs = 10.200.0.1/32
+        PersistentKeepalive = 25

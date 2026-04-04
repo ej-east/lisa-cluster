@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`authentik.lisa`)
+      match: Host(`authentik.cheesedipper.com`)
       observability:
         accessLogs: true
         metrics: true
@@ -17,4 +17,3 @@ spec:
         - name: authentik-server
           port: 443
           scheme: https
-  tls: {}
