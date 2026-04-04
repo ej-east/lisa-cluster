@@ -21,4 +21,5 @@ spec:
       services:
         - name: adguard-clusterip
           port: 3000
-  tls: {}
+  tls:
+    secretName: wildcard-lisa-tls

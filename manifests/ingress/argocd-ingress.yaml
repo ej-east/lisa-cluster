@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argo.lisa`)
+      match: Host(`argo.cheesedipper.com`)
       observability:
         accessLogs: true
         metrics: true

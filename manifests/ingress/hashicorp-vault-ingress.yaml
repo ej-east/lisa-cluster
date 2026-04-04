@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`vault.lisa`)
+      match: Host(`vault.cheesedipper.com`)      
       observability:
         accessLogs: true
         metrics: true
