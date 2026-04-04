@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: wildcard-lisa
-  namespace: kube-system
+  namespace: adguard
 spec:
   secretName: wildcard-lisa-tls
   issuerRef:
