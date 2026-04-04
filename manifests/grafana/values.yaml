@@ -6,8 +6,8 @@ grafana:
       readOnly: true
   grafana.ini:
     server:
-      domain: grafana.lisa
-      root_url: https://grafana.lisa
+      domain: cheesedipper.com 
+      root_url: https://grafana.cheesedipper.com
     auth.generic_oauth:
       enabled: true
       name: "Authentik"
