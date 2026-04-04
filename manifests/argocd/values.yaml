@@ -75,7 +75,7 @@ configs:
     url: https://authentik.cheesedipper.com
     oidc.config: |
       name: Authentik
-      issuer: authentik.cheesedipper.com/application/o/argo-cd/
+      issuer: https://authentik.cheesedipper.com/application/o/argo-cd/
       clientID: $argocd-oidc-secret:client-id
       clientSecret: $argocd-oidc-secret:client-secret
 
