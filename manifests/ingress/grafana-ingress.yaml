@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`grafana.lisa`)
+      match: Host(`grafana.cheesedipper.com`)
       observability:
         accessLogs: true
         metrics: true
