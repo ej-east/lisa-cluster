@@ -72,7 +72,7 @@ applicationSet:
         release: prometheus-stack
 configs:
   cm:
-    url: https://authentik.cheesedipper.com
+    url: https://argo.cheesedipper.com
     oidc.config: |
       name: Authentik
       issuer: https://authentik.cheesedipper.com/application/o/argo-cd/
