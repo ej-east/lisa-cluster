@@ -14,13 +14,12 @@ grafana:
       client_id: $__file{/etc/secrets/grafana/oidc_id}
       client_secret: $__file{/etc/secrets/grafana/oidc_secret}
       scopes: "openid profile email"
-      auth_url: "https://authentik.lisa/application/o/authorize/"
-      token_url: "https://authentik.lisa/application/o/token/"
-      api_url: "https://authentik.lisa/application/o/userinfo/"
+      auth_url: "https://authentik.cheesedipper.com/application/o/authorize/"
+      token_url: "https://authentik.cheesedipper.com/application/o/token/"
+      api_url: "https://authentik.cheesedipper.com/application/o/userinfo/"
       role_attribute_path: "contains(groups, 'sso_grafana_admins') && 'Admin' || contains(groups, 'sso_grafana_editors') && 'Editor' || 'Viewer'"
       email_attribute_path: "email"
       name_attribute_path: "name"
       login_attribute_path: "preferred_username"
       allow_sign_up: true
       skip_org_role_sync: false
-      tls_client_ca: /etc/secrets/grafana/ca_root
