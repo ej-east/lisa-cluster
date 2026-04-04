@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-lisa
+  namespace: kube-system
+spec:
+  secretName: wildcard-lisa-tls
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
+  commonName: "*.lisa"
+  dnsNames:
+    - "*.lisa"
+    - lisa
+    - "argo.lisa"
+    - "adguard.lisa"
+    - "vault.lisa"
+    - "adguard-admin.lisa"
+    - "grafana.lisa"
