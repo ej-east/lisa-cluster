@@ -12,6 +12,9 @@ spec:
     - repoURL: https://github.com/ej-east/lisa-cluster
       targetRevision: HEAD
       path: manifests/cert-manager/lisa
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: manifests/cert-manager/cheesedipper
   destination:
     server: "https://kubernetes.default.svc"
     namespace: cert-manager
