@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: umami
+  name: umami
+  namespace: umami
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: umami
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: umami
+    spec:
+      containers:
+        - image: ghcr.io/umami-software/umami:latest
+          name: umami
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "400Mi"
+            requests:
+              cpu: "10m"
+              memory: "150Mi"
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: umami-vault-secrets
+                  key: DATABASE_URL
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: umami-vault-secrets
+                  key: app_secret
