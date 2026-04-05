@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: blog
-          image: myjob:latest
+          image: ghcr.io/ej-east/lisa-blog:latest
           imagePullPolicy: IfNotPresent
           resources:
             requests:
