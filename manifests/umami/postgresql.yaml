@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: umami-db
+  namespace: umami
+spec:
+  instances: 1
+  storage:
+    size: 5Gi
+  bootstrap:
+    initdb:
+      database: umami
+      owner: umami
+      secret:
+        name: cnpg-umami-vault-secrets
