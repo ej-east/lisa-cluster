@@ -20,9 +20,6 @@ spec:
         app: adguard
     spec:
       securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
         fsGroup: 65534
       nodeSelector:
         kubernetes.io/hostname: lisa-node-2
@@ -30,10 +27,7 @@ spec:
         - name: adguardhome
           image: adguard/adguardhome:v0.108.0-b.83
           securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
               add: ["NET_BIND_SERVICE"]
             seccompProfile:
               type: RuntimeDefault
