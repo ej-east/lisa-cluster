@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog
+  namespace: blog
+spec:
+  selector:
+    app: blog
+  type: ClusterIP
+  ports:
+    - name: blog
+      protocol: TCP
+      port: 80
+      targetPort: 80
