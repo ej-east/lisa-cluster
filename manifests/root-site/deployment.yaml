@@ -23,7 +23,7 @@ spec:
       containers:
         - name: root-site
           image: ghcr.io/ej-east/lisa-root:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 5m
