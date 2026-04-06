@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: root-site
+  namespace: root-site
+  labels:
+    app: root-site
+spec:
+  selector:
+    matchLabels:
+      app: root-site
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: root-site
+    spec:
+      containers:
+        - name: root-site
+          image: ghcr.io/ej-east/lisa-root:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 5m
+              memory: 20Mi
+            limits:
+              cpu: 20m
+              memory: 50Mi
