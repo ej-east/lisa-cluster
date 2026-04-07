@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: renovate
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: ghcr.io/renovatebot/charts
+      chart: renovate
+      targetRevision: 46.101.4
+      helm:
+        valueFiles:
+          - $values/manifests/renovate/values.yaml
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: manifests/renovate/manifests
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: renovate
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
