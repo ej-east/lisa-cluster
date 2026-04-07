@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.1](https://github.com/ej-east/lisa-cluster/compare/v0.3.0...v0.3.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* file structure now matches expected design ([23363c4](https://github.com/ej-east/lisa-cluster/commit/23363c46d660e4494f8605d1527c1baac10e0361))
+
+
+### Chores
+
+* **deps:** update ghcr.io/renovatebot/charts/renovate docker tag to v46.103.0 ([#18](https://github.com/ej-east/lisa-cluster/issues/18)) ([6623ee4](https://github.com/ej-east/lisa-cluster/commit/6623ee4499cdbe4989a6a33fdf8e89e9d3b41e3e))
+* **deps:** update helm release argo-cd to v9.4.17 ([#14](https://github.com/ej-east/lisa-cluster/issues/14)) ([ccdb535](https://github.com/ej-east/lisa-cluster/commit/ccdb535d5fb9969f0dc8c9693eee4780e348b6ca))
+* **deps:** update helm release cert-manager to v1.20.1 ([#15](https://github.com/ej-east/lisa-cluster/issues/15)) ([564d967](https://github.com/ej-east/lisa-cluster/commit/564d967a5f005ed4b76e4882aa5f360c71cce197))
+* **deps:** update helm release cloudnative-pg to v0.28.0 ([#16](https://github.com/ej-east/lisa-cluster/issues/16)) ([ae50db9](https://github.com/ej-east/lisa-cluster/commit/ae50db93ec41018072460e489ae3dfc180d5641a))
+* **deps:** update helm release external-secrets to v2.2.0 ([#17](https://github.com/ej-east/lisa-cluster/issues/17)) ([0f89a22](https://github.com/ej-east/lisa-cluster/commit/0f89a220614492ddd60fb3fe31dafab01df50365))
+* **deps:** update helm release kube-prometheus-stack to v82.18.0 ([#19](https://github.com/ej-east/lisa-cluster/issues/19)) ([358b4b3](https://github.com/ej-east/lisa-cluster/commit/358b4b392c33df92ca9c2a577c829228ed6f2237))
+* **deps:** update helm release kube-prometheus-stack to v83 ([#20](https://github.com/ej-east/lisa-cluster/issues/20)) ([bace474](https://github.com/ej-east/lisa-cluster/commit/bace474487ad36a95b3d5d4306e254b8246dc2e5))
+
 ## [0.3.0](https://github.com/ej-east/lisa-cluster/compare/v0.2.0...v0.3.0) (2026-04-07)
 
 
