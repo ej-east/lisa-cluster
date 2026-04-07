@@ -2,12 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "argocd": {
-    "fileMatch": ["argocd-applications/.+\\.ya?ml$", "bootstrap/.+\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/argocd-applications/.+\\.ya?ml$/",
+      "/bootstrap/.+\\.ya?ml$/"
+    ]
   },
   "kubernetes": {
-    "fileMatch": ["manifests/.+\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/manifests/.+\\.ya?ml$/"
+    ]
   },
   "helm-values": {
-    "fileMatch": ["manifests/.+/values\\.ya?ml$"]
+    "managerFilePatterns": [
+      "/manifests/.+/values\\.ya?ml$/"
+    ]
   }
 }
