@@ -1,0 +1,33 @@
+cronjob:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  timeZone: "America/New_York"
+
+  pod:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+      limits:
+        memory: 1Gi
+    env:
+      LOG_LEVEL: info
+      NODE_OPTIONS: "--max-old-space-size=768"
+
+existingSecret: renovate-vault-secrets
+
+renovate:
+  config: |
+    {
+      "platform": "github",
+      "onboarding": true,
+      "onboardingConfig": {
+        "extends": ["config:recommended"]
+      },
+      "repositories": [
+        "ej-east/lisa-cluster"
+      ],
+      "dependencyDashboard": true,
+      "prHourlyLimit": 4,
+      "prConcurrentLimit": 10
+    }
