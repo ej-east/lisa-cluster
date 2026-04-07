@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/ej-east/lisa-cluster/compare/v0.2.0...v0.3.0) (2026-04-07)
+
+
+### Features
+
+* init of commitlinit for standarization ([#8](https://github.com/ej-east/lisa-cluster/issues/8)) ([138e947](https://github.com/ej-east/lisa-cluster/commit/138e9474deaf0ba55c0e08c4278ba2a14cd1c711))
+
 ## [0.2.0](https://github.com/ej-east/lisa-cluster/compare/v0.1.0...v0.2.0) (2026-04-07)
 
 
