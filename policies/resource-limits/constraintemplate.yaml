@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: requireresourcelimits
+spec:
+  crd:
+    spec:
+      names:
+        kind: RequireResourceLimits
+      validation:
+        openAPIV3Schema:
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      code:
+        - engine: Rego
+          source:
+            version: "v1"
+            rego: "package requireresourcelimits\n\nviolation contains {\"msg\" : msg} if{\n some container in input.review.object.spec.containers\n  not container.resources.limits.cpu \n\n  msg := sprintf(\"Container(%v) - Missing CPU limit\", [container.name])\n}\n\nviolation contains {\"msg\" : msg} if{\n  some container in input.review.object.spec.containers\n  not container.resources.limits.memory \n\n  msg := sprintf(\"Container(%v) - Missing memory limit\", [container.name])\n}\n"
