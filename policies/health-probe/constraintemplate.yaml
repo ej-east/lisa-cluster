@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: requireprobe
+spec:
+  crd:
+    spec:
+      names:
+        kind: RequireProbe
+      validation:
+        openAPIV3Schema:
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      code:
+        - engine: Rego
+          source:
+            version: "v1"
+            rego: "package requireprobe\n\nviolation contains {\"msg\" : msg} if{\n  some container in input.review.object.spec.containers\n  \n  not container.livenessProbe \n  not container.readinessProbe\n\n  ns := input.review.object.metadata.namespace\n  msg := sprintf(\"Container(%v, %v) - Missing livenessProbe or readinessProbe\", [container.name, ns])\n}\n"
