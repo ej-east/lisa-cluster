@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: explicitlynoautomountsa
+spec:
+  crd:
+    spec:
+      names:
+        kind: ExplicitlyNoAutoMountSa
+      validation:
+        openAPIV3Schema:
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      code:
+        - engine: Rego
+          source:
+            version: "v1"
+            rego: "package explicitlynoautomountsa\n\nviolation contains {\"msg\" : msg} if{ \n  ns := input.review.object.metadata.namespace\n  pod_sa_token := input.review.object.spec.automountServiceAccountToken\n  \n  not pod_sa_token == false\n\n  msg := sprintf(\"Pod(%v) - Must explicitly set `spec.automountServiceAccountToken` to false\", [ns])\n}\n"

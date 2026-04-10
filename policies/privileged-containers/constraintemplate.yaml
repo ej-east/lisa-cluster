@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: noprivilegedcontainers
+spec:
+  crd:
+    spec:
+      names:
+        kind: NoPrivilegedContainers
+      validation:
+        openAPIV3Schema:
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      code:
+        - engine: Rego
+          source:
+            version: "v1"
+            rego: "package noprivilegedcontainers \n\nviolation contains {\"msg\" : msg} if{ \n  ns := input.review.object.metadata.namespace\n  some container in input.review.object.spec.containers\n\n  container.securityContext.privileged == true\n\n  msg := sprintf(\"Container(%v, %v) - Is privileged.\", [container.name, ns])\n}\n\n\nviolation contains {\"msg\" : msg} if{ \n  ns := input.review.object.metadata.namespace\n  deployment_security_context := input.review.object.spec.securityContext.privileged\n\n  deployment_security_context == true\n\n  msg := sprintf(\"Deployment(%v) - Is privileged.\", [ns])\n}\n"
