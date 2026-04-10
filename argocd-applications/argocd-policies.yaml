@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatekeeper-policies
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: policies/health-probe
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: policies/no-latest-image
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: policies/pod-automount-serviceaccount-token
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: policies/privileged-containers
+    - repoURL: https://github.com/ej-east/lisa-cluster
+      targetRevision: HEAD
+      path: policies/resource-limits
+  destination:
+    server: "https://kubernetes.default.svc"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
