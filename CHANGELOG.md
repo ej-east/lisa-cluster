@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/ej-east/lisa-cluster/compare/v0.3.1...v0.3.2) (2026-04-10)
+
+
+### Chores
+
+* **config:** migrate config renovate.json ([#22](https://github.com/ej-east/lisa-cluster/issues/22)) ([2d0968f](https://github.com/ej-east/lisa-cluster/commit/2d0968fdd2e73b42b82ad743965f3df66abb4a7a))
+
 ## [0.3.1](https://github.com/ej-east/lisa-cluster/compare/v0.3.0...v0.3.1) (2026-04-07)
 
 
