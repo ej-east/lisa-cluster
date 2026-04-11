@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/ej-east/lisa-cluster/compare/v0.3.2...v0.4.0) (2026-04-11)
+
+
+### Features
+
+* **memos:** init of memos application ([#31](https://github.com/ej-east/lisa-cluster/issues/31)) ([48ff033](https://github.com/ej-east/lisa-cluster/commit/48ff033f3ec5a1f7ecfb9587ee4dde3b928af159))
+
 ## [0.3.2](https://github.com/ej-east/lisa-cluster/compare/v0.3.1...v0.3.2) (2026-04-10)
 
 
