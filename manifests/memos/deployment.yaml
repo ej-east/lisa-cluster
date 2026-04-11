@@ -1,0 +1,52 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memos
+  namespace: memo
+  labels:
+    app: memos
+spec:
+  selector:
+    matchLabels:
+      app: memos
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: memos
+      labels:
+        app: memos
+    spec:
+      containers:
+        - name: memos
+          image: neosmemo/memos:0.26
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 50m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          env:
+            - name: MEMOS_INSTANCE_URL
+              value: "memos.cheesedipper.com"
+            - name: MEMOS_DRIVER
+              value: postgres
+            - name: MEMOS_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: DSN
+                  name: memos-secret
+          ports:
+            - containerPort: 5230
+              name: memos
+          volumeMounts:
+            - name: assets
+              mountPath: /var/opt/memos
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: memo-pvc
+      restartPolicy: Always
