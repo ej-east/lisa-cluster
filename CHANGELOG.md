@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.5.0](https://github.com/ej-east/lisa-cluster/compare/v0.4.0...v0.5.0) (2026-04-12)
+
+
+### Features
+
+* **cilium:** init of cilium, added argocd application for cilium, adjusted node_security.md runbook ([#34](https://github.com/ej-east/lisa-cluster/issues/34)) ([b6d98a4](https://github.com/ej-east/lisa-cluster/commit/b6d98a4030a25ef33e7a331b5cb81e7b930e0cbb))
+
+
+### Bug Fixes
+
+* **cilium:** enable portmap CNI chaining for hostPort support ([cdbf057](https://github.com/ej-east/lisa-cluster/commit/cdbf05718424fed092d735fc376c398f60d2a6d7))
+* **cilium:** use direct API server IP instead of auto discovery ([ecaa6f2](https://github.com/ej-east/lisa-cluster/commit/ecaa6f2ec56724fcdbfda58d310ff6bc4e01d055))
+* **wireguard,cilium:** hotfix - disable KPR and wireguard encryption, fix tunnel DNAT routing ([2785f72](https://github.com/ej-east/lisa-cluster/commit/2785f72cb6de56500d1ec47f4187fbb97af094c2))
+* **wireguard:** dnat to traefik pod endpoint resolved via k8s API ([bfbd0b9](https://github.com/ej-east/lisa-cluster/commit/bfbd0b9edbd41e34ce855e7955f7a72e0dec28da))
+* **wireguard:** use direct API IP and retry loop for endpoint resolution ([baa4a72](https://github.com/ej-east/lisa-cluster/commit/baa4a72dbe553235306dbcc37099c68696e62a48))
+
+
+### Reverts
+
+* **cilium:** remove portmap CNI chaining, binary not installed ([9c8338a](https://github.com/ej-east/lisa-cluster/commit/9c8338a673a8536ce019bd0a03f4395981351204))
+
+
+### Documentation
+
+* **runbook:** added security & restarting runbook ([d45eeb2](https://github.com/ej-east/lisa-cluster/commit/d45eeb26e3a8a486f68df64faf176a0aeecd20db))
+
 ## [0.4.0](https://github.com/ej-east/lisa-cluster/compare/v0.3.2...v0.4.0) (2026-04-11)
 
 
