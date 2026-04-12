@@ -13,12 +13,13 @@ Default SSH configuration is too permissive for me. This section disables passwo
 Generate a dedicated key pair for cluster access:
 
 ```bash
-ssh-keygen -t ed25519 -C "lisa-admin" -f ~/.ssh/lisa-key 
+ssh-keygen -t ed25519 -C "lisa-admin" -f ~/.ssh/lisa-key
 ```
 
 Then copy it to each node:
+
 ```bash
-ssh-copy-id -i ~/.ssh/lisa-key username@<node-ip> 
+ssh-copy-id -i ~/.ssh/lisa-key username@<node-ip>
 ```
 
 Add an entry to your local `~/.ssh/config` so you're not typing flags every time:
@@ -51,6 +52,7 @@ MaxAuthTries 3
 ClientAliveInterval 300
 ClientAliveCountMax 2
 ```
+
 `ClientAliveInterval` and `ClientAliveCountMax` together mean an idle session gets dropped after ~10 minutes. `MaxAuthTries 3` limits brute force attempts before the connection is cut.
 
 ### 1.3 Test Access
@@ -87,7 +89,12 @@ sudo ufw default allow outgoing
 sudo ufw allow 2222/tcp          # SSH
 sudo ufw allow 6443/tcp          # K3s API server
 sudo ufw allow 10250/tcp         # Kubelet metrics
-sudo ufw allow 8472/udp          # Flannel VXLAN
+
+sudo ufw allow 8472/udp          # Cilium VXLAN
+sudo ufw allow 51871/udp         # Cilium WireGuard
+sudo ufw allow 4240/tcp          # Cilium health
+sudo ufw allow 4244/tcp          # Hubble server
+sudo ufw allow 4245/tcp          # Hubble relay
 
 sudo ufw enable
 ```
@@ -95,7 +102,6 @@ sudo ufw enable
 ### 2.2 Configure rules for Worker Node
 
 Login to each worker node and run the following:
-
 
 ```bash
 ssh lisa-node-#
@@ -107,8 +113,13 @@ sudo ufw default allow outgoing
 
 sudo ufw allow 2222/tcp          # SSH
 sudo ufw allow 10250/tcp         # Kubelet
-sudo ufw allow 8472/udp          # Flannel VXLAN
 sudo ufw allow 30000:32767/tcp   # NodePort range
+
+sudo ufw allow 8472/udp          # Cilium VXLAN
+sudo ufw allow 51871/udp         # Cilium WireGuard
+sudo ufw allow 4240/tcp          # Cilium health
+sudo ufw allow 4244/tcp          # Hubble server
+sudo ufw allow 4245/tcp          # Hubble relay
 
 sudo ufw enable
 ```
@@ -121,7 +132,7 @@ Run on each node to verfiy:
 sudo ufw status verbose
 ```
 
-This should show you the rules above. 
+This should show you the rules above.
 
 ## Kernel Hardening
 
@@ -184,9 +195,9 @@ sudo sysctl --system
 
 ## 4 K3s Config hardening
 
-**Master node only.** 
+**Master node only.**
 
-### 4.1 Edit K3s config 
+### 4.1 Edit K3s config
 
 ```bash
 sudo vim /etc/rancher/k3s/config.yaml
@@ -253,7 +264,7 @@ bantime  = 1h
 findtime = 10m
 ```
 
-Then enable and start it: 
+Then enable and start it:
 
 ```bash
 sudo systemctl enable fail2ban --now
