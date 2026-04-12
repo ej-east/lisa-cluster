@@ -30,13 +30,20 @@ spec:
               PRIVATE_KEY=$(cat /secrets/wireguard_client)
               # Resolve Traefik pod endpoint via K8s API
               TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-              EP_JSON=$(wget -qO- --header="Authorization: Bearer ${TOKEN}" \
-                "https://kubernetes.default.svc/api/v1/namespaces/kube-system/endpoints/traefik" \
-                --no-check-certificate 2>/dev/null)
-              # Extract first endpoint IP and named ports
-              TRAEFIK_IP=$(echo "$EP_JSON" | sed 's/.*"ip":"\([0-9.]*\)".*/\1/')
-              WEB_PORT=$(echo "$EP_JSON" | sed 's/.*"name":"web","port":\([0-9]*\).*/\1/')
-              WEBSECURE_PORT=$(echo "$EP_JSON" | sed 's/.*"name":"websecure","port":\([0-9]*\).*/\1/')
+              API_URL="https://192.168.1.67:6443/api/v1/namespaces/kube-system/endpoints/traefik"
+              # Retry until API is reachable (may start before kube-proxy syncs)
+              EP_JSON=""
+              for i in $(seq 1 30); do
+                EP_JSON=$(wget -qO- --header="Authorization: Bearer ${TOKEN}" \
+                  "${API_URL}" --no-check-certificate 2>/dev/null)
+                if echo "$EP_JSON" | grep -q '"ip"'; then break; fi
+                echo "Waiting for API/endpoints (attempt ${i})..."
+                sleep 2
+              done
+              # Extract first endpoint IP and named ports (multiline JSON with spaces)
+              TRAEFIK_IP=$(echo "$EP_JSON" | grep '"ip"' | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
+              WEB_PORT=$(echo "$EP_JSON" | grep -A1 '"web"' | grep '"port"' | grep -oE '[0-9]+')
+              WEBSECURE_PORT=$(echo "$EP_JSON" | grep -A1 '"websecure"' | grep '"port"' | grep -oE '[0-9]+')
               echo "Resolved Traefik endpoint: ${TRAEFIK_IP} web=${WEB_PORT} websecure=${WEBSECURE_PORT}"
               sed -e "s|# Inject Private Key and Traefik endpoint at runtime|PrivateKey = ${PRIVATE_KEY}|" \
                   -e "s|TRAEFIK_EP_WEB|${TRAEFIK_IP}:${WEB_PORT}|" \
