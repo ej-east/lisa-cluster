@@ -4,23 +4,4 @@ metadata:
   name: wireguard-config
   namespace: wireguard
 data:
-  wg0.conf.template: | 
-        [Interface]
-        Address = 10.200.0.2/24
-        # Inject Private Key at runtime
-
-        # Forward traffic received on tunnel to Traefik's ClusterIP
-        PostUp = iptables -t nat -A PREROUTING -i wg0 -p tcp --dport 80 -j DNAT --to-destination 10.43.227.162:80
-        PostUp = iptables -t nat -A PREROUTING -i wg0 -p tcp --dport 443 -j DNAT --to-destination 10.43.227.162:443
-        PostUp = iptables -t nat -A POSTROUTING -o wg0 -j MASQUERADE
-     
-        PostDown = iptables -t nat -D PREROUTING -i wg0 -p tcp --dport 80 -j DNAT --to-destination 10.43.227.162:80
-        PostDown = iptables -t nat -D PREROUTING -i wg0 -p tcp --dport 443 -j DNAT --to-destination 10.43.227.162:443
-        PostDown = iptables -t nat -D POSTROUTING -o wg0 -j MASQUERADE
-     
-        [Peer]
-        # OCI Machine 
-        PublicKey = UyFXC1x34YifwYi0KL8MP6F2DBvdWWys57m9LQge6mg=
-        Endpoint = 129.158.253.226:51820
-        AllowedIPs = 10.200.0.1/32
-        PersistentKeepalive = 25
+  wg0.conf.template: "[Interface]\nAddress = 10.200.0.2/24\n# Inject Private Key at runtime\n# Resolve Traefik ClusterIP via DNS and forward tunnel traffic\nPostUp = TRAEFIK_IP=$(getent hosts traefik.kube-system.svc.cluster.local | awk '{print $1}') && iptables -t nat -I PREROUTING 1 -i wg0 -p tcp --dport 80 -j DNAT --to-destination ${TRAEFIK_IP}:80 && iptables -t nat -I PREROUTING 1 -i wg0 -p tcp --dport 443 -j DNAT --to-destination ${TRAEFIK_IP}:443 && iptables -t nat -A POSTROUTING -s 10.200.0.0/24 ! -o wg0 -j MASQUERADE\n\nPostDown = iptables -t nat -S PREROUTING | grep '\\-i wg0' | sed 's/^-A/-D/' | while read rule; do iptables -t nat $rule; done; iptables -t nat -D POSTROUTING -s 10.200.0.0/24 ! -o wg0 -j MASQUERADE 2>/dev/null\n\n[Peer]\n# OCI Machine \nPublicKey = UyFXC1x34YifwYi0KL8MP6F2DBvdWWys57m9LQge6mg=\nEndpoint = 129.158.253.226:51820\nAllowedIPs = 10.200.0.1/32\nPersistentKeepalive = 25\n"
