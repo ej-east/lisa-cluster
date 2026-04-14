@@ -7,10 +7,10 @@ encryption:
   enabled: false
 
 hubble:
-  enabled: true 
-  relay: 
-    enabled: true 
+  enabled: true
+  relay:
+    enabled: true
   ui:
-    enabled: true 
+    enabled: true
 operator:
   replicas: 1 
