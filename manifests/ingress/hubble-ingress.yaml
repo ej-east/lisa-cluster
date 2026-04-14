@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hubble-ui
+  namespace: kube-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`hubble.cheesedipper.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+      priority: 15
+      services:
+        - name: authentik-proxy
+          port: 80
+    - kind: Rule
+      match: Host(`hubble.cheesedipper.com`)
+      middlewares:
+        - name: authentik-hubble
+      priority: 10
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - name: hubble-ui
+          port: 80
+  tls: {}
