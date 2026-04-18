@@ -23,7 +23,7 @@ spec:
       containers:
         - name: blog
           image: ghcr.io/ej-east/lisa-blog:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 5m
