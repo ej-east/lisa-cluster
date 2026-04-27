@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: memos
-          image: neosmemo/memos:0.26
+          image: neosmemo/memos:0.28
           imagePullPolicy: IfNotPresent
           resources:
             requests:
