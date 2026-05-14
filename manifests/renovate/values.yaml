@@ -25,8 +25,9 @@ renovate:
         "extends": ["config:recommended"]
       },
       "repositories": [
-        "ej-east/lisa-cluster"
-      ],
+        "ej-east/lisa-cluster",
+        "ej-east/bedrock"
+     ],
       "dependencyDashboard": true,
       "prHourlyLimit": 4,
       "prConcurrentLimit": 10
