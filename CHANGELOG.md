@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.1](https://github.com/ej-east/lisa-cluster/compare/v0.5.0...v0.5.1) (2026-05-20)
+
+
+### Bug Fixes
+
+* **blog:** fixed blog so it always pulls latest image ([40463c3](https://github.com/ej-east/lisa-cluster/commit/40463c3632c39b34685a48d3cff6768d103a17e4))
+* **cilium:** fix cidr ([ce05033](https://github.com/ej-east/lisa-cluster/commit/ce050330aaa684390efa3a89276138bb1c4276a2))
+* **cilium:** use kustomize to patch cilium to use the host network ([5442a23](https://github.com/ej-east/lisa-cluster/commit/5442a23b686c5261ffcb7b16f609747e501df4ea))
+
+
+### Documentation
+
+* **readme:** rework readme ([2f20ff0](https://github.com/ej-east/lisa-cluster/commit/2f20ff0caf5b6001a0bcc43c885cd88bbce76cb0))
+
+
+### Chores
+
+* **hubble:** seperated points of ingress ([e933277](https://github.com/ej-east/lisa-cluster/commit/e93327793b9bfc8603341d5ca0352d101dc21fc4))
+* **rennovate:** updated github repo name ([72a247a](https://github.com/ej-east/lisa-cluster/commit/72a247a0042badb8deda3fdcc8ff6b43e771f2b6))
+* **renovate:** added bedrock repo ([7687fe7](https://github.com/ej-east/lisa-cluster/commit/7687fe7e317c575df0823838c9ab7f597916a2ab))
+
 ## [0.5.0](https://github.com/ej-east/lisa-cluster/compare/v0.4.0...v0.5.0) (2026-04-12)
 
 
